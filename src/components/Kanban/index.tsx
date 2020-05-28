@@ -24,8 +24,6 @@ interface IKanbanData {
 const Kanban: React.FC = () => {
   const [data, setData] = useState<IKanbanData>(kanbanData);
 
-  const onDragStart = useCallback((result: DropResult) => {}, []);
-
   const onDragEnd = useCallback(
     (result: DropResult) => {
       const { destination, source, draggableId, type } = result;
@@ -52,14 +50,13 @@ const Kanban: React.FC = () => {
           return;
         }
 
-        newColumnsOrdem.splice(source.index, 1, draggedColumn);
+        newColumnsOrdem.splice(source.index, 1);
+        newColumnsOrdem.splice(destination.index, 0, draggedColumn);
 
         const newState = {
           ...data,
           columns: newColumnsOrdem,
         };
-
-        console.log('newState', newState);
 
         setData(newState);
       }
@@ -77,6 +74,8 @@ const Kanban: React.FC = () => {
       }
 
       if (startColumn === finishColumn) {
+        // Reordering cards in same list
+
         const { tasks: newTasks } = startColumn;
 
         const draggedTask = newTasks.find(
@@ -110,7 +109,9 @@ const Kanban: React.FC = () => {
 
         setData(newData);
       } else {
-        // Removendo da lista de saída
+        // Moving cards between lists
+
+        // Removing card from source list
         const { tasks: startTasks } = startColumn;
 
         const draggedTask = startTasks.find(
@@ -138,7 +139,7 @@ const Kanban: React.FC = () => {
 
         //-------------------------
 
-        // Adicionando na lista de destino
+        // Adding card to destination list
 
         const { tasks: finishTasks } = finishColumn;
         finishTasks.splice(destination.index, 0, draggedTask);
@@ -160,13 +161,15 @@ const Kanban: React.FC = () => {
           ...data,
           columns: newFinishColumns,
         };
+
+        setData(newData);
       }
     },
     [data],
   );
 
   return (
-    <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
+    <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="all-columns" direction="horizontal" type="column">
         {provided => (
           <Container {...provided.droppableProps} ref={provided.innerRef}>

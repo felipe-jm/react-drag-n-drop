@@ -12,7 +12,7 @@ const data = {
     },
     {
       id: 2,
-      title: 'In grogress',
+      title: 'In progress',
       tasks: [],
     },
     {

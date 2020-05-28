@@ -15,6 +15,8 @@ export const Container = styled.div`
   flex-direction: column;
 
   min-height: 100px;
+
+  background: #fff;
 `;
 
 export const Title = styled.div`
