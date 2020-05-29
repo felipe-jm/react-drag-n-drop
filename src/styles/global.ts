@@ -8,12 +8,13 @@ export default createGlobalStyle`
     box-sizing: border-box
   }
   body {
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    background-color: #525252;
     -webkit-font-smoothing: antialiased;
   }
   body, input, button {
     font-family: 'Roboto Slab', sans-serif;
     font-size: 16px;
+    color: #fff;
   }
   h1, h2, h3, h4, h5, h6, strong {
     font-weight: 500;

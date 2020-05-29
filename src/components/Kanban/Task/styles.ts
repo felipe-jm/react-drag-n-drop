@@ -9,5 +9,5 @@ export const Container = styled.div<ContainerProps>`
   padding: 8px;
   margin-bottom: 8px;
   border-radius: 8px;
-  background-color: ${props => (props.isDragging ? 'lightgreen' : '#fff')};
+  background-color: ${props => (props.isDragging ? '#ca3e47' : '#313131')};
 `;

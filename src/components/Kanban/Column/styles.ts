@@ -8,7 +8,6 @@ export const Container = styled.div`
   width: 100%;
 
   margin: 8px;
-  border: 1px solid lightgrey;
   border-radius: 2px;
 
   display: flex;
@@ -16,7 +15,7 @@ export const Container = styled.div`
 
   min-height: 100px;
 
-  background: #fff;
+  background: #414141;
 `;
 
 export const Title = styled.div`
@@ -25,7 +24,7 @@ export const Title = styled.div`
 
 export const TaskList = styled.div<TaskListProps>`
   padding: 8px;
-  background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'white')};
+  background-color: ${props => (props.isDraggingOver ? '#313131' : '#414141')};
   flex-grow: 1;
   min-height: 100px;
 `;
